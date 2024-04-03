@@ -18,18 +18,18 @@ const users = ref([
   <div class="viewport-center">
     <ul class="user-wrapper">
       <!-- User With Avatar -->
-      <li class="user-card">
-        <img class="avatar" src="https://i.pravatar.cc/150?img=1" />
-        Debra Hunt
-      </li>
-
-      <!-- User Without Avatar -->
-      <li class="user-card">
-        <img class="avatar" src="/placeholder-avatar.jpg" />
-
-        <!-- 💪 BONUS: Display their initials as the avatar instead of the placeholder -->
-        <!-- <span class="avatar">NG</span> -->
-        Nancy Green
+      <li v-for="user in users" class="user-card" :key="user.id">
+        <img
+          class="avatar"
+          :alt="user.name"
+          v-if="user.avatar"
+          :src="user.avatar"
+        />
+        <span v-else class="avatar">
+          {{ user.name.split(" ")[0][0] }}
+          {{ user.name.split(" ")[1][0] }}
+        </span>
+        {{ user.name }}
       </li>
     </ul>
   </div>
