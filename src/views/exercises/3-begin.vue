@@ -13,6 +13,14 @@ const users = ref([
   { id: '7fbee0ff-c831-44ed-b7bb-c8265cc4fa4f', votes: 0, name: 'Sean Bauer', avatar: 'https://i.pravatar.cc/150?img=9' },
   { id: '9c110067-2345-4f7f-89cc-b50cd02fd106', votes: 0, name: 'Ashley Fisher', avatar: 'https://i.pravatar.cc/150?img=10' }
 ]);
+// prettier-ignore
+function decrement(user) {
+  if (user.votes > 0) user.votes--;
+}
+
+function increment(user) {
+  return user.votes++;
+}
 </script>
 <template>
   <div class="viewport-center">
@@ -22,11 +30,13 @@ const users = ref([
         v-for="(user, index) in users"
         :key="user.id"
         :tabindex="index + 1"
+        @keydown.arrow-down="decrement(user)"
+        @keydown.arrow-up="increment(user)"
       >
         <img class="avatar" :src="user.avatar || '/placeholder-avatar.jpg'" />
         <div>
           <p class="mb-2">{{ user.name }}</p>
-          <button>Vote {{ user.votes }}</button>
+          <button @click="user.votes++">Vote {{ user.votes }}</button>
         </div>
       </li>
     </ul>
