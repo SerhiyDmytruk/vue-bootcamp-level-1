@@ -1,10 +1,24 @@
 <script setup lang="ts">
 import VueMarkdown from "vue-markdown-render";
 import hljs from "highlight.js";
-import "highlight.js/styles/vs2015.css";
+import darkTheme from "highlight.js/styles/vs2015.css?raw";
+import lightTheme from "highlight.js/styles/github.css?raw";
 import { ref, computed, watch } from "vue";
-import { refAutoReset } from "@vueuse/core";
+import { refAutoReset, useStyleTag, useDark } from "@vueuse/core";
 import type { McqAnswer } from "@/types";
+
+const isDark = useDark();
+const { css: editorTheme } = useStyleTag("");
+
+watch(
+  isDark,
+  (dark) => {
+    editorTheme.value = dark ? darkTheme : lightTheme;
+  },
+  {
+    immediate: true,
+  },
+);
 
 defineEmits<{
   submit: [payload: McqAnswer];
@@ -86,6 +100,15 @@ watch(
 );
 
 const preventingDoubleClick = refAutoReset(false, 1000);
+
+const showEmptyAnswerMessage = ref(false);
+watch(selected, () => {
+  showEmptyAnswerMessage.value = false;
+});
+
+defineExpose({
+  showEmptyAnswerMessage: () => (showEmptyAnswerMessage.value = true),
+});
 </script>
 
 <template>
@@ -169,6 +192,9 @@ const preventingDoubleClick = refAutoReset(false, 1000);
         {{ props.btnText }}
       </button>
     </div>
+    <p v-if="showEmptyAnswerMessage" class="flex justify-end py-3 text-red-500">
+      Must select an answer choice!
+    </p>
   </div>
 </template>
 
@@ -179,6 +205,10 @@ const preventingDoubleClick = refAutoReset(false, 1000);
 
 .blink.active {
   animation: blink 0.5s cubic-bezier(0.7, 0, 0.7, 1.5);
+}
+
+.prose :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  @apply bg-gray-200 dark:bg-gray-800 text-black dark:text-white;
 }
 
 @keyframes blink {

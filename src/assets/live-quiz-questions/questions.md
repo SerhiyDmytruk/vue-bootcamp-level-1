@@ -190,7 +190,7 @@ False
 
 ---
 
-The below Vue code snippet is valid
+The below Vue code snippet is valid and adheres to best practices
 
 ```html
 <template>
@@ -499,7 +499,7 @@ When an element uses transitions
 
 ---
 
-Which of the following types are valid to provide the `key` attribute
+Which of the following data types are valid to provide the `key` attribute
 
 #
 
