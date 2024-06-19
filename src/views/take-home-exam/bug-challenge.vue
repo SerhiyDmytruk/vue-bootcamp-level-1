@@ -54,7 +54,7 @@ const modalOpen = ref(true);
 </script>
 <template>
   <CodingChallenge
-    repo="Vuejs-Certification/bootcamp-level-1-take-home-bug-challenge"
+    repo="Vuejs-Certification/bootcamp-level-1-take-home-bug-challenge/tree/start"
     :instructions="instructions"
     :openFiles="openFiles"
     :checklist="checklist"
