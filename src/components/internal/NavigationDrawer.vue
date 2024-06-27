@@ -42,7 +42,7 @@ const allLinks = [
   ["Live Quiz", "/live-quiz/quiz"],
   ["Feature Challenge", "/challenges/feature-challenge"],
   ["Bug Challenge", "/challenges/bug-challenge"],
-  ["Take Home Practice Exam", "/take-home-exam"],
+  // ["Take Home Practice Exam", "/take-home-exam"],
 ];
 
 const route = useRoute();
