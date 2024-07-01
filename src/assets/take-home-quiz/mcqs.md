@@ -18,7 +18,7 @@ All of the above are true
 
 ---
 
-What are double curly brackets (`{{ }}`) good for in Vue?
+What are double curly brackets `{{ }}` good for in Vue?
 
 # Correct
 
@@ -38,15 +38,23 @@ Defining computed props
 
 ---
 
-True or false. `v-model` is useful for one-way data binding.
+`v-model` is useful for...
 
 #
 
-True
+one-way data binding
 
 # Correct
 
-False
+two-way data binding
+
+#
+
+transporting elements to the body
+
+#
+
+looping over data
 
 ---
 
@@ -346,7 +354,7 @@ Given the following component defintion and subsequent use, will the word "Submi
 ```html
 // MyButton.vue
 <template>
-  <div><slot>Submit</slot></div>
+  <button><slot>Submit</slot></button>
 </template>
 ```
 
@@ -367,6 +375,7 @@ No
 ---
 
 The below binding syntax is valid
+What will the following Vue code render as HTML?
 
 ```html
 <script setup>
@@ -381,11 +390,19 @@ The below binding syntax is valid
 
 # Correct
 
-True
+`<a href="https://vueschool.io"> ... </a>`
 
 #
 
-False
+`<a attributeName="https://vueschool.io"> ... </a>`
+
+#
+
+`<a link="https://vueschool.io"> ... </a>`
+
+#
+
+This code is invalid and will throw an error
 
 ---
 
@@ -421,15 +438,15 @@ v-leave-to
 
 ---
 
-Which of the following are components provider by Vue Router?
+Which of the following are components provided by Vue Router?
 
 #
 
-<RouterLink />
+`<RouterLink />`
 
 #
 
-<RouterView />
+`<RouterView />`
 
 # Correct
 
@@ -543,7 +560,7 @@ The array `users` should come before the individual `user` in the v-for directiv
 
 #
 
-Nothing is wrong with this code block
+`v-for` is not a valid Vue directive
 
 ---
 
@@ -559,7 +576,7 @@ False
 
 ---
 
-`v-for` can be used to loop over
+`v-for` can be used to loop over...
 
 #
 
