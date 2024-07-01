@@ -34,7 +34,7 @@ export const useUser = () => {
   // This only helps provide some nice UX
   // real security is done on the server
   const isAdmin = computed(() => {
-    const admins = ["me@danielkelly.io"];
+    const admins = ["me@danielkelly.io", "mostafasaid1994@gmail.com"];
     return admins.includes(session.value?.user.email || "");
   });
 
