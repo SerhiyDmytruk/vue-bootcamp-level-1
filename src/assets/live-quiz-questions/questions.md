@@ -68,7 +68,7 @@ Which of the following correctly defines a template ref?
 
 ```html
 <script setup>
-  const myRef = ref();
+  const theElement = useTemplateRef("myRef");
 </script>
 
 <template>
@@ -80,7 +80,7 @@ Which of the following correctly defines a template ref?
 
 ```html
 <script setup>
-  const myRef = ref();
+  const theElement = useTemplateRef("myRef");
 </script>
 
 <template>
@@ -92,7 +92,7 @@ Which of the following correctly defines a template ref?
 
 ```html
 <script setup>
-  const myRef = ref();
+  const theElement = useTemplateRef("myRef");
 </script>
 
 <template>
@@ -104,7 +104,7 @@ Which of the following correctly defines a template ref?
 
 ```html
 <script setup>
-  const myRef = ref();
+  const theElement = useTemplateRef("myRef");
 </script>
 
 <template>

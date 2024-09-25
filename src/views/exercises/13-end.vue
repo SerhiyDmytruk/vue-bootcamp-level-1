@@ -1,6 +1,6 @@
 <script setup>
-import { onMounted, ref, computed, onUnmounted } from "vue";
-const el = ref();
+import { onMounted, ref, computed, onUnmounted, useTemplateRef } from "vue";
+const el = useTemplateRef("el");
 
 const numOfSlides = 10;
 const activeSlide = ref(1);
@@ -59,7 +59,7 @@ onUnmounted(() => {
 
 <style scoped>
 .slide {
-  @apply object-cover w-full transition-all duration-700 block;
+  @apply block object-cover w-full transition-all duration-700;
 }
 .slides-wrapper {
   @apply flex overflow-hidden rounded max-w-[600px];

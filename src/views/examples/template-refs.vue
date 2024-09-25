@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-const el = ref<HTMLElement>();
+import { onMounted, useTemplateRef } from "vue";
+const el = useTemplateRef("el");
 
 onMounted(() => {
   if (!el.value) return;
