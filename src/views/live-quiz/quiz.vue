@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch, onUnmounted } from "vue";
+import { ref, computed, watch, onUnmounted, useTemplateRef } from "vue";
 import QuizQuestion from "@/components/internal/QuizQuestion.vue";
 import { useUser } from "@/composables/useUser";
 import { useSupabase } from "@/composables/useSupabase";
@@ -93,7 +93,7 @@ type SubmittedAnswer = {
   questionId?: number;
 };
 
-const quizQuestionEl = ref();
+const quizQuestionEl = useTemplateRef("quizQuestionEl");
 
 const answers = useLocalStorage<SubmittedAnswer[]>("quiz-answers", []);
 

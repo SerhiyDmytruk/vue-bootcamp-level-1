@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import VueMarkdown from "vue-markdown-render";
-import { ref, computed, onMounted, onUnmounted, watch } from "vue";
+import {
+  ref,
+  computed,
+  onMounted,
+  onUnmounted,
+  watch,
+  useTemplateRef,
+} from "vue";
 import { refAutoReset } from "@vueuse/core";
 import AppModal from "@/components/internal/AppModal.vue";
 import { onBeforeRouteLeave } from "vue-router";
@@ -23,7 +30,7 @@ function closeInstructions() {
 const showChecklist = ref(false);
 const checked = ref([]);
 
-const iframe = ref<HTMLIFrameElement | null>(null);
+const iframe = useTemplateRef("iframe");
 
 //iframe concerns
 const showResetConfirm = ref(false);
