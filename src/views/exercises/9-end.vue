@@ -1,13 +1,13 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
-import UserProfileCard from "@/components/end/UserProfileCard.vue";
+import { ref } from "vue";
+import UserProfileCardAdvanced from "@/components/end/UserProfileCardAdvanced.vue";
 import UserProfileCardEdit from "@/components/end/UserProfileCardEdit.vue";
-import CardShortcuts from "@/components/internal/CardShortcuts.vue";
+import CardFlip from "@/components/CardFlip.vue";
 
 const user = ref({
   avatar: "https://i.pravatar.cc/150?img=6",
   username: "dudemcface",
-  bio: "I'm a software engineer focused on delivering unique and engaging experiences.",
+  bio: "I'm a software engineer focused on delivering <strong>unique and engaging experiences</strong>.",
   name: {
     first: "Dude",
     last: "McFace",
@@ -17,45 +17,36 @@ const user = ref({
 });
 
 const editing = ref(false);
-
-function keyboardShortcuts(e) {
-  if (e.key === "Escape") {
-    e.preventDefault();
-    editing.value = false;
-  }
-  if (e.key === "e" && e.metaKey) {
-    e.preventDefault();
-    editing.value = true;
-  }
-}
-
-onMounted(() => {
-  window.addEventListener("keydown", keyboardShortcuts);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("keydown", keyboardShortcuts);
-});
 </script>
 <template>
-  <div class="viewport-center">
+  <div class="exercise-11">
     <div>
       <UserProfileCardEdit
         v-if="editing"
         v-bind="user"
         @saved="user = $event"
       />
-      <UserProfileCard v-else v-bind="user" />
+      <UserProfileCardAdvanced v-else v-bind="user">
+        <template #bio>
+          <div v-html="user.bio"></div>
+        </template>
+        <template #skill="{ skill }">
+          <span v-if="skill === 'Vue'">🔥</span>
+          {{ skill }}
+        </template>
+      </UserProfileCardAdvanced>
 
       <button @click="editing = !editing" class="edit-button">
         {{ editing ? "Cancel" : "Edit" }}
       </button>
-      <CardShortcuts />
     </div>
   </div>
 </template>
 
 <style scoped>
+.exercise-11 {
+  @apply flex items-center justify-center h-screen p-10;
+}
 .edit-button {
   @apply bg-gray-200 dark:bg-gray-700 dark:text-white px-2 py-1 rounded block mt-2 w-full max-w-xs;
 }
