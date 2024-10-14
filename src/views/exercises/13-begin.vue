@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { useTemplateRef } from "vue";
 const el = useTemplateRef("el");
 
