@@ -68,7 +68,7 @@ Which of the following correctly defines a template ref?
 
 ```html
 <script setup>
-  const myRef = ref();
+  const theElement = useTemplateRef("myRef");
 </script>
 
 <template>
@@ -80,7 +80,7 @@ Which of the following correctly defines a template ref?
 
 ```html
 <script setup>
-  const myRef = ref();
+  const theElement = useTemplateRef("myRef");
 </script>
 
 <template>
@@ -92,7 +92,7 @@ Which of the following correctly defines a template ref?
 
 ```html
 <script setup>
-  const myRef = ref();
+  const theElement = useTemplateRef("myRef");
 </script>
 
 <template>
@@ -104,7 +104,7 @@ Which of the following correctly defines a template ref?
 
 ```html
 <script setup>
-  const myRef = ref();
+  const theElement = useTemplateRef("myRef");
 </script>
 
 <template>
@@ -190,7 +190,7 @@ False
 
 ---
 
-The below Vue code snippet is valid
+The below Vue code snippet is valid and adheres to best practices
 
 ```html
 <template>
@@ -499,7 +499,7 @@ When an element uses transitions
 
 ---
 
-Which of the following types are valid to provide the `key` attribute
+Which of the following data types are valid to provide the `key` attribute
 
 #
 

@@ -21,6 +21,7 @@ const allLinks = [
   ["Exercise 5 End", "/exercises/5-end"],
   ["Exercise 6 Start", "/exercises/6-begin"],
   ["Exercise 6 End", "/exercises/6-end"],
+
   ["Day 2", "/day-2-welcome", true],
   ["Exercise 7 Start", "/exercises/7-begin"],
   ["Exercise 7 End", "/exercises/7-end"],
@@ -32,17 +33,18 @@ const allLinks = [
   ["Exercise 10 End", "/exercises/10-end"],
   ["Exercise 11 Start", "/exercises/11-begin"],
   ["Exercise 11 End", "/exercises/11-end"],
+  ["Exercise 11 Bonus Start 🔥", "/exercises/11-zbonus-begin"],
+  ["Exercise 11 Bonus End 🔥", "/exercises/11-zbonus-end"],
+
+  ["Day 3", "/day-3-welcome", true],
   ["Exercise 12 Start", "/exercises/12-begin"],
   ["Exercise 12 End", "/exercises/12-end"],
-  ["Exercise 12 Bonus Start 🔥", "/exercises/12-zbonus-begin"],
-  ["Exercise 12 Bonus End 🔥", "/exercises/12-zbonus-end"],
   ["Exercise 13 Start", "/exercises/13-begin"],
   ["Exercise 13 End", "/exercises/13-end"],
-  ["Day 3", "/day-3-welcome", true],
   ["Live Quiz", "/live-quiz/quiz"],
   ["Feature Challenge", "/challenges/feature-challenge"],
   ["Bug Challenge", "/challenges/bug-challenge"],
-  ["Take Home Practice Exam", "/take-home-exam"],
+  // ["Take Home Practice Exam", "/take-home-exam"],
 ];
 
 const route = useRoute();

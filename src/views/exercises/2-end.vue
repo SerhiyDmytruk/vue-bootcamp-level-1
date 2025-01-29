@@ -18,14 +18,14 @@ const users = ref([
   <div class="viewport-center">
     <ul class="user-wrapper">
       <li class="user-card" v-for="user in users" :key="user.id">
-        <!-- <img class="avatar" :src="user.avatar || '/placeholder-avatar.jpg'" /> -->
+        <img class="avatar" :src="user.avatar || '/placeholder-avatar.jpg'" />
 
         <!-- 💪 Bonus -->
-        <img v-if="user.avatar" class="avatar" :src="user.avatar" />
+        <!-- <img v-if="user.avatar" class="avatar" :src="user.avatar" />
         <span v-else class="avatar"
           >{{ user.name.split(" ")[0][0]
           }}{{ user.name.split(" ")[1][0] }}</span
-        >
+        > -->
         {{ user.name }}
       </li>
     </ul>

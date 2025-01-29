@@ -1,6 +1,6 @@
-<script setup lang="ts">
-import { ref } from "vue";
-const el = ref<HTMLElement>();
+<script setup>
+import { useTemplateRef } from "vue";
+const el = useTemplateRef("el");
 
 const numOfSlides = 10;
 </script>
@@ -19,7 +19,7 @@ const numOfSlides = 10;
 
 <style scoped>
 .slide {
-  @apply object-cover w-full transition-all duration-700 block;
+  @apply block object-cover w-full transition-all duration-700;
 }
 .slides-wrapper {
   @apply flex overflow-hidden rounded max-w-[600px];

@@ -1,9 +1,9 @@
 <script setup>
-import { ref, onMounted } from "vue";
-const elements = ref([]);
+import { onMounted, useTemplateRef } from "vue";
+const allElements = useTemplateRef("elements");
 
 onMounted(() => {
-  elements.value.forEach((el) => {
+  allElements.value.forEach((el) => {
     console.log(el);
   });
 });

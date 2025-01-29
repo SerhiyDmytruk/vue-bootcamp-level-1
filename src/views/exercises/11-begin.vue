@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import UserProfileCardAdvanced from "@/components/UserProfileCardAdvanced.vue";
+import UserProfileCardAdvanced from "@/components/end/UserProfileCardAdvanced.vue";
 import UserProfileCardEdit from "@/components/end/UserProfileCardEdit.vue";
 import CardFlip from "@/components/CardFlip.vue";
 
@@ -27,7 +27,15 @@ const editing = ref(false);
           v-bind="user"
           @saved="user = $event"
         />
-        <UserProfileCardAdvanced v-else v-bind="user" />
+        <UserProfileCardAdvanced v-else v-bind="user">
+          <template #bio>
+            <div v-html="user.bio"></div>
+          </template>
+          <template #skill="{ skill }">
+            <span v-if="skill === 'Vue'">🔥</span>
+            {{ skill }}
+          </template>
+        </UserProfileCardAdvanced>
       </CardFlip>
       <button @click="editing = !editing" class="edit-button">
         {{ editing ? "Cancel" : "Edit" }}

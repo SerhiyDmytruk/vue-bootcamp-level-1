@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch, onUnmounted } from "vue";
+import { ref, computed, watch, onUnmounted, useTemplateRef } from "vue";
 import QuizQuestion from "@/components/internal/QuizQuestion.vue";
 import { useUser } from "@/composables/useUser";
 import { useSupabase } from "@/composables/useSupabase";
@@ -92,7 +92,18 @@ type SubmittedAnswer = {
   isCorrect: boolean;
   questionId?: number;
 };
+
+const quizQuestionEl = useTemplateRef("quizQuestionEl");
+
 const answers = useLocalStorage<SubmittedAnswer[]>("quiz-answers", []);
+
+function handleQuizQuestionSubmit(answer: SubmittedAnswer) {
+  if (!answer.answer) {
+    quizQuestionEl.value?.showEmptyAnswerMessage();
+    return;
+  }
+  handleSubmit(answer);
+}
 async function handleSubmit(answer: SubmittedAnswer) {
   answers.value.push(answer);
   const { data, error } = await supabase
@@ -163,7 +174,7 @@ const message = computed(() => {
       ? "You got it right!"
       : answers.value.at(-1)?.answer
         ? "Sorry, you got this one wrong"
-        : "You didn't answer in time",
+        : "You didn't answer in time (or didn't press submit)",
     Finished: "",
   }[activeQuestion.value?.status || "NotStarted"];
 });
@@ -196,7 +207,7 @@ const messageIconClass = computed(() => {
 const { addConfetti } = useConfetti();
 const passed = computed(() => {
   if (activeQuestion.value?.status !== "Finished") return null;
-  return rightAnswers.value.length >= 3;
+  return rightAnswers.value.length >= 25;
 });
 watch(
   () => activeQuestion.value?.status,
@@ -283,6 +294,7 @@ const unwatchQuizIdChecker = watch(
         :seconds="activeQuestion?.time_limit_seconds || 10"
       />
       <QuizQuestion
+        ref="quizQuestionEl"
         :content="currentQuestion?.content"
         :is-example="currentQuestion.id <= config.numberOfExampleQuestions"
         :number="
@@ -291,7 +303,10 @@ const unwatchQuizIdChecker = watch(
             : currentQuestion?.id - config.numberOfExampleQuestions
         "
         @submit="
-          handleSubmit({ ...$event, questionId: activeQuestion?.question })
+          handleQuizQuestionSubmit({
+            ...$event,
+            questionId: activeQuestion?.question,
+          })
         "
         :show-correct-answer="activeQuestion?.status === 'ShowingAnswer'"
         :disabled="activeQuestion?.status !== 'Answering' || submitted"
