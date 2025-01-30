@@ -13,6 +13,34 @@ const users = ref([
   { id: '7fbee0ff-c831-44ed-b7bb-c8265cc4fa4f', votes: 0, name: 'Sean Bauer', avatar: 'https://i.pravatar.cc/150?img=9' },
   { id: '9c110067-2345-4f7f-89cc-b50cd02fd106', votes: 0, name: 'Ashley Fisher', avatar: 'https://i.pravatar.cc/150?img=10' }
 ]);
+
+function vote(obj) {
+  return obj.votes++
+}
+
+function keydownVote(event, obj) {
+  console.log(event, obj)
+
+  let newValue = obj.votes;
+
+  switch (event.key) {
+    case("ArrowUp"):
+      newValue++;
+      break;
+    case("ArrowDown"):
+      newValue--;
+      break;
+    default:
+      console.log('default')
+  }
+
+  if(newValue < 0 ) {
+    return 0;
+  }
+
+  obj.votes = newValue
+}
+
 </script>
 <template>
   <div class="viewport-center">
@@ -22,11 +50,12 @@ const users = ref([
         v-for="(user, index) in users"
         :key="user.id"
         :tabindex="index + 1"
+        @keydown="(event) => { keydownVote(event, user) }"
       >
         <img class="avatar" :src="user.avatar || '/placeholder-avatar.jpg'" />
         <div>
           <p class="mb-2">{{ user.name }}</p>
-          <button>Vote {{ user.votes }}</button>
+          <button @click="vote(user)">Vote {{ user.votes }}</button>
         </div>
       </li>
     </ul>
@@ -40,6 +69,11 @@ const users = ref([
 .user-card {
   @apply p-3 shadow-lg border border-slate-200 dark:border-slate-950 rounded w-80 relative flex items-center;
 }
+
+.user-card:focus {
+  border: 2px solid blue;
+}
+
 .avatar {
   @apply font-bold object-cover w-24 h-24 rounded-full mr-5 dark:bg-slate-700 bg-slate-200 inline-flex justify-center items-center text-3xl;
 }

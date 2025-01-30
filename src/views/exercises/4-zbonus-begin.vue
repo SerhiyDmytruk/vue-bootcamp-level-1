@@ -1,12 +1,12 @@
 <script setup>
 import { ref, reactive, nextTick } from "vue";
 
-let users = reactive([]);
+let users = reactive({data:[]});
 const page = ref(1);
 
 async function fetchUsers() {
   const res = await fetch(`/api/users/${page.value}.json`);
-  users = await res.json();
+  users.data = await res.json();
 }
 
 fetchUsers();
@@ -30,7 +30,7 @@ function decrementVote(user) {
       <ul class="user-wrapper">
         <li
           class="user-card"
-          v-for="(user, index) in users"
+          v-for="(user, index) in users.data"
           :key="user.id"
           :tabindex="index + 1"
           @keydown.arrow-up="incrementVote(user)"

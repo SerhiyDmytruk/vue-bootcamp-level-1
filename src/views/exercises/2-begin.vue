@@ -13,23 +13,23 @@ const users = ref([
   { id: '7fbee0ff-c831-44ed-b7bb-c8265cc4fa4f', name: 'Sean Bauer', avatar: 'https://i.pravatar.cc/150?img=9' },
   { id: '9c110067-2345-4f7f-89cc-b50cd02fd106', name: 'Ashley Fisher', avatar: 'https://i.pravatar.cc/150?img=10' }
 ]);
+
+function concat(str){
+
+}
 </script>
 <template>
   <div class="viewport-center">
     <ul class="user-wrapper">
-      <!-- User With Avatar -->
-      <li class="user-card">
-        <img class="avatar" src="https://i.pravatar.cc/150?img=1" />
-        Debra Hunt
-      </li>
 
-      <!-- User Without Avatar -->
-      <li class="user-card">
-        <img class="avatar" src="/placeholder-avatar.jpg" />
+      <li class="user-card"
+          v-for="(user, item) in users"
+          :key="item">
+          <img class="avatar" v-if="user.avatar" :src="user.avatar" />
+          <!-- 💪 BONUS: Display their initials as the avatar instead of the placeholder -->
+         <span v-else class="avatar">{{ user.name.split(" ")[0][0] }} {{ user.name.split(" ")[1][0] }}</span>
 
-        <!-- 💪 BONUS: Display their initials as the avatar instead of the placeholder -->
-        <!-- <span class="avatar">NG</span> -->
-        Nancy Green
+        {{user.name}}
       </li>
     </ul>
   </div>

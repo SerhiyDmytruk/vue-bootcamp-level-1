@@ -51,6 +51,10 @@ function decrementVote(user) {
           :tabindex="index + 1"
           @keydown.arrow-up="incrementVote(user)"
           @keydown.arrow-down="decrementVote(user)"
+          :class="{
+            winning: user.votes === top3Users[0].values,
+            'losing-hard': user.votes === 0
+          }"
         >
           <img class="avatar" :src="user.avatar || '/placeholder-avatar.jpg'" />
           <div>

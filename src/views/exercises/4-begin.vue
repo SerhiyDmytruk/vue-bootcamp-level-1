@@ -21,6 +21,14 @@ function incrementVote(user) {
 function decrementVote(user) {
   if (user.votes > 0) user.votes--;
 }
+
+const top3Leader = computed(() => {
+  return [...users.value]
+    .sort((a,b) => b.votes - a.votes)
+    .slice(0, 3)
+    .filter((item) => item.votes > 0)
+})
+
 </script>
 <template>
   <div class="viewport-center">
@@ -29,23 +37,15 @@ function decrementVote(user) {
       <div class="leader-board">
         <h2>Leader Board</h2>
 
-        <ul>
-          <li>
-            <strong>Debra Hunt</strong>
-            <span class="votes-pill">5</span>
-          </li>
-          <li>
-            <strong>Micahel Perkins</strong>
-            <span class="votes-pill">3</span>
-          </li>
-          <li>
-            <strong>Jessica Martin</strong>
-            <span class="votes-pill">1</span>
-          </li>
-        </ul>
+          <ul v-if="top3Leader.length">
+            <li v-for="user in top3Leader" :key="user.id">
+              <strong>{{user.name}}</strong>
+              <span class="votes-pill">{{user.votes}}</span>
+            </li>
+          </ul>
 
-        <!-- If no one has any votes show this message -->
-        <!-- <p>No one has any votes yet</p> -->
+          <!-- If no one has any votes show this message -->
+           <p v-else>No one has any votes yet</p>
       </div>
       <h2>Candidates</h2>
       <ul class="user-wrapper">
