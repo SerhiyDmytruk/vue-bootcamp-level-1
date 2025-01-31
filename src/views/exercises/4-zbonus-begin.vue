@@ -1,12 +1,12 @@
 <script setup>
 import { ref, reactive, nextTick } from "vue";
 
-let users = reactive({data:[]});
+let users = ref({});
 const page = ref(1);
 
 async function fetchUsers() {
   const res = await fetch(`/api/users/${page.value}.json`);
-  users.data = await res.json();
+  users.value = await res.json();
 }
 
 fetchUsers();
