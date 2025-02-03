@@ -1,5 +1,38 @@
 <script setup>
 // you must define the props here to make the component display the proper content
+const props = defineProps({
+  pro: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
+  name: {
+    first: {
+      type: String,
+      default: "John",
+    },
+    last: {
+      type: String,
+      default: "Doe",
+    },
+  },
+  bio: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  avatar: {
+    type: String,
+    default: "placeholder-avatar.jpg",
+  },
+  skills: {
+    type: Array,
+    required: true,
+  },
+});
 </script>
 <template>
   <div class="profile-card">

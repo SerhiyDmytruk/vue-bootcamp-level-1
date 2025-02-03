@@ -16,8 +16,14 @@ const user = ref({
 </script>
 <template>
   <div class="exercise-7">
-    <h1>Replace this with the UserProfileCard</h1>
-    <!-- Use the UserProfileCard here to display the info from the user above -->
+    <UserProfileCard
+      :avatar="user.avatar"
+      :username="user.username"
+      :pro="user.pro"
+      :name="user.name"
+      :skills="user.skills.sort()"
+      :bio="user.bio"
+    />
   </div>
 </template>
 
