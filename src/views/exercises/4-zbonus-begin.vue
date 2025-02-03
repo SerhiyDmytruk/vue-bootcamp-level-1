@@ -30,7 +30,7 @@ function decrementVote(user) {
       <ul class="user-wrapper">
         <li
           class="user-card"
-          v-for="(user, index) in users.data"
+          v-for="(user, index) in users"
           :key="user.id"
           :tabindex="index + 1"
           @keydown.arrow-up="incrementVote(user)"
