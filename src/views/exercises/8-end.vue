@@ -15,14 +15,14 @@ const user = ref({
   pro: true,
 });
 
-const alert = (msg) => window.alert(msg);
+const alertFn = (msg) => window.alert(msg);
 </script>
 <template>
   <div class="viewport-center">
     <UserProfileCard
       v-bind="user"
       class="mr-5"
-      @message="alert(`You messaged ${user.name.first} ${user.name.last}`)"
+      @message="alertFn(`You messaged ${user.name.first} ${user.name.last}`)"
     />
     <UserProfileCardEdit v-bind="user" @saved="user = $event" />
   </div>

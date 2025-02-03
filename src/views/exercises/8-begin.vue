@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import UserProfileCard from "@/components/end/UserProfileCard.vue";
+import UserProfileCard from "@/components/UserProfileCard.vue";
 import UserProfileCardEdit from "@/components/UserProfileCardEdit.vue";
 
 const user = ref({
@@ -14,11 +14,20 @@ const user = ref({
   skills: ["JavaScript", "Vue", "React", "Node"],
   pro: true,
 });
+
+function updated(data) {
+  console.log(data);
+  user.value = data;
+}
+
+function localAlert() {
+  alert(`You messaged ${user.value.name.first} ${user.value.name.last}`);
+}
 </script>
 <template>
   <div class="viewport-center">
-    <UserProfileCard v-bind="user" class="mr-5" />
-    <UserProfileCardEdit v-bind="user" />
+    <UserProfileCard v-bind="user" @message="localAlert" class="mr-5" />
+    <UserProfileCardEdit v-bind="user" @saved="updated" />
   </div>
 </template>
 

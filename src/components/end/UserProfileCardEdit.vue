@@ -33,6 +33,7 @@ const props = defineProps({
 
 const emit = defineEmits({
   saved: (user) => {
+    console.log(user);
     return user.username && user.skills.length > 0;
   },
 });

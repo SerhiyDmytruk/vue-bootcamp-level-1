@@ -37,10 +37,16 @@ const _user = ref({
   ...JSON.parse(JSON.stringify(props)),
   skills: props.skills.join(", "),
 });
+
+const emits = defineEmits(["saved"]);
+
+function onSubmit() {
+  emits("saved", _user.value);
+}
 </script>
 
 <template>
-  <form class="profile-form">
+  <form class="profile-form" @submit.prevent="onSubmit">
     <!-- Username Field -->
     <div class="form-field">
       <label for="username" class="form-label">Username</label>
