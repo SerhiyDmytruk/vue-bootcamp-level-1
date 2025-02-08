@@ -17,6 +17,27 @@ const user = ref({
 });
 
 const editing = ref(false);
+
+function keydownType(e) {
+  console.log(e.key);
+  if (e.key === "Escape") {
+    e.preventDefault();
+    editing.value = false;
+  }
+
+  if (e.key === "E") {
+    e.preventDefault();
+    editing.value = true;
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("keydown", keydownType);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", keydownType);
+});
 </script>
 <template>
   <div class="viewport-center">
