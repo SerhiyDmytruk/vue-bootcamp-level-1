@@ -59,7 +59,11 @@ const imageLoaded = ref(false);
     <div class="body">
       <h3 class="name">{{ name.first }} {{ name.last }}</h3>
       <h4 class="username">@{{ username }}</h4>
-      <p class="bio">{{ bio }}</p>
+      <p class="bio">
+        <slot name="bio">
+          {{ bio }}
+        </slot>
+      </p>
       <div class="actions">
         <button class="message-btn" @click="$emit('message')">Message</button>
         <button class="follow-btn" @click="$emit('follow')">Follow</button>
@@ -67,7 +71,11 @@ const imageLoaded = ref(false);
     </div>
     <div class="footer">
       <ul class="skills">
-        <li v-for="skill in skillsInOrder" :key="skill">{{ skill }}</li>
+        <li v-for="skill in skillsInOrder" :key="skill">
+          <slot name="skill" :skill="skill">
+            {{ skill }}
+          </slot>
+        </li>
       </ul>
     </div>
   </div>

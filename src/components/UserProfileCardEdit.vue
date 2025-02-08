@@ -31,22 +31,30 @@ const props = defineProps({
   },
 });
 
-// clone the props object to local data
-// and convert the skills array to a comma-separated string
+const emit = defineEmits({
+  saved: (user) => {
+    return user.username && user.skills.length > 0;
+  },
+});
+
 const _user = ref({
   ...JSON.parse(JSON.stringify(props)),
   skills: props.skills.join(", "),
 });
 
-const emits = defineEmits(["saved"]);
-
-function onSubmit() {
-  emits("saved", _user.value);
+function submitForm() {
+  emit("saved", {
+    ...JSON.parse(JSON.stringify(_user.value)),
+    skills: _user.value.skills
+      .split(",")
+      .map((skill) => skill.trim())
+      .filter((skill) => skill),
+  });
 }
 </script>
 
 <template>
-  <form class="profile-form" @submit.prevent="onSubmit">
+  <form @submit.prevent="submitForm" class="profile-form">
     <!-- Username Field -->
     <div class="form-field">
       <label for="username" class="form-label">Username</label>
