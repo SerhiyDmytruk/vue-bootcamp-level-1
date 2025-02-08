@@ -1,8 +1,8 @@
-<script setup>
-import { useTemplateRef } from "vue";
+<script setup lang="ts">
+import { ref, useTemplateRef } from "vue";
 const el = useTemplateRef("el");
 
-const numOfSlides = 10;
+const numOfSlides = ref(10);
 </script>
 <template>
   <div class="flex items-center justify-center h-screen px-5">
