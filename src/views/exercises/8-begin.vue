@@ -16,7 +16,6 @@ const user = ref({
 });
 
 function updated(data) {
-  console.log(data);
   user.value = data;
 }
 

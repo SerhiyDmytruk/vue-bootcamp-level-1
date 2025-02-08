@@ -15,32 +15,29 @@ const users = ref([
 ]);
 
 function vote(obj) {
-  return obj.votes++
+  return obj.votes++;
 }
 
 function keydownVote(event, obj) {
-  console.log(event, obj)
-
   let newValue = obj.votes;
 
   switch (event.key) {
-    case("ArrowUp"):
+    case "ArrowUp":
       newValue++;
       break;
-    case("ArrowDown"):
+    case "ArrowDown":
       newValue--;
       break;
     default:
-      console.log('default')
+      console.log("default");
   }
 
-  if(newValue < 0 ) {
+  if (newValue < 0) {
     return 0;
   }
 
-  obj.votes = newValue
+  obj.votes = newValue;
 }
-
 </script>
 <template>
   <div class="viewport-center">
@@ -50,7 +47,11 @@ function keydownVote(event, obj) {
         v-for="(user, index) in users"
         :key="user.id"
         :tabindex="index + 1"
-        @keydown="(event) => { keydownVote(event, user) }"
+        @keydown="
+          (event) => {
+            keydownVote(event, user);
+          }
+        "
       >
         <img class="avatar" :src="user.avatar || '/placeholder-avatar.jpg'" />
         <div>

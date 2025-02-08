@@ -32,7 +32,7 @@ function onSubmit() {
     interestsValid.value.length !== false &&
     termsValid.value !== false
   ) {
-    console.log(form);
+    console.log(form, "form");
   } else {
     alert("False");
   }

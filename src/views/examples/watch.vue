@@ -21,7 +21,7 @@ const footballScore = ref({
 });
 
 watchEffect(() => {
-  console.log(footballScore.value);
+  console.log(footballScore.value, "footballScore");
 });
 
 // watch(

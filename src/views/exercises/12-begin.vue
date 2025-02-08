@@ -19,7 +19,6 @@ const user = ref({
 const editing = ref(false);
 
 function keydownType(e) {
-  console.log(e.key);
   if (e.key === "Escape") {
     e.preventDefault();
     editing.value = false;
